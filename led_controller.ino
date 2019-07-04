@@ -3,14 +3,15 @@
 
 #define FIREBASE_HOST "ledcontroller-3fa45.firebaseio.com"
 #define FIREBASE_AUTH "i6OZcOqGd6P66PX4vwrlRwqRwQM6u5SpPjtZ3M1X"
-#define WIFI_SSID "Gooner21"
-#define WIFI_PASSWORD "aaronramsey"
-
+#define WIFI_SSID1 "Gooner21"
+#define WIFI_PASSWORD1 "aaronramsey"
+#define WIFI_SSID2 "Redmi"
+#define WIFI_PASSWORD2 "goliath35"
 void setup() {
   Serial.begin(9600);
 
   // connect to wifi.
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  WiFi.begin(WIFI_SSID2, WIFI_PASSWORD2);
   Serial.print("connecting");
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
@@ -38,11 +39,11 @@ void loop() {
   if(Firebase.success()){
     Serial.println("Success.");
   }
-  Serial.println(led1);
-  if(led1 == "1"){
+  
+  if(led1 == "ON"){
     digitalWrite(LED_BUILTIN,LOW);
     Serial.println("ON");
-  }else{
+  }else if(led1 == "OFF"){
     digitalWrite(LED_BUILTIN,HIGH);
     Serial.println("OFF");
   }

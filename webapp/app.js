@@ -28,21 +28,21 @@ function myApp(){
       button.innerHTML = "ON";
     }
   });
-  button.addEventListener('click',buttonEventHandler());
-
-}
-function buttonEventHandler(){
-  console.log(ledStatus);
-  if(ledStatus == "ON"){
-    updates = {led1:'OFF'};
-    console.log("Swithcing off.");
-  }else if(ledStatus == "OFF"){
-    updates = {led1 :'ON'};
-    console.log("Switching on.");
+  button.addEventListener('click',function (){
+    console.log(ledStatus);
+    if(ledStatus == "ON"){
+      updates = {led1:'OFF'};
+      console.log("Swithcing off.");
+    }else if(ledStatus == "OFF"){
+      updates = {led1 :'ON'};
+      console.log("Switching on.");
+    }
+    console.log("button clicked");
+    firebase.database().ref('led_cntroller/leds').update(updates);
+    return;
   }
-  console.log("button clicked");
-  firebase.database().ref('led_cntroller/leds').update(updates);
-  return;
+  );
+
 }
 
 function getRealTimeValues(){
